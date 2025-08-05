@@ -30,6 +30,14 @@ class TestTextNode(unittest.TestCase):
         node2 = TextNode("This is not same type node", TextType.BOLD)
         self.assertNotEqual(node, node2)
 
+    def test_repr(self):
+        node = TextNode("Test", TextType.ITALIC, "http://example.com")
+        self.assertEqual(repr(node), "TextNode('Test', italic, 'http://example.com')")
+
+    def test_invalid_text_type(self):
+        with self.assertRaises(ValueError):
+            TextNode("Test", "invalid")
+
 
 if __name__ == "__main__":
     unittest.main()
