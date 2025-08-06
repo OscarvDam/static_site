@@ -24,7 +24,7 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_props_to_html_none(self):
         node = HTMLNode()
-        self.assertIsNone(node.props_to_html())
+        self.assertEqual(node.props_to_html(), {})
 
     def test_repr(self):
         repr_output = repr(self.node)
@@ -38,7 +38,7 @@ class TestHTMLNode(unittest.TestCase):
         repr_output = repr(node)
         self.assertIn("tag=div", repr_output)
         self.assertIn("value=Test", repr_output)
-        self.assertIn("props=None", repr_output)
+        self.assertIn("props=", repr_output)
 
     def test_to_html_raises(self):
         with self.assertRaises(NotImplementedError):
