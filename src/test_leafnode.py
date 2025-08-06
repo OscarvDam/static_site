@@ -20,9 +20,14 @@ class TestLeafNode(unittest.TestCase):
         self.assertEqual(node.to_html(), "<p>Hello, world!</p>")
 
     def test_children_raise(self):
-        with self.assertRaises(ValueError):
-            LeafNode("p", "Hello, world!", [])
+        with self.assertRaises(TypeError):
+            LeafNode("p", "Hello, world!", children=[])
 
     def test_value_none(self):
         with self.assertRaises(ValueError):
             LeafNode("p", None).to_html()
+
+    def test_leaf_no_tag(self):
+        node = LeafNode(tag=None, value="Hello, world!")
+        self.assertEqual(node.to_html(), "Hello, world!")
+

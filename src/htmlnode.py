@@ -10,7 +10,7 @@ class HTMLNode:
 
     def props_to_html(self):
         if self.props=={}:
-            return {}
+            return
         prop_text = ""
         sorted_props = sorted(self.props.keys())
         for prop in sorted_props:
