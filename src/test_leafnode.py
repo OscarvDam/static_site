@@ -13,8 +13,6 @@ class TestLeafNode(unittest.TestCase):
 
     def test_leaf_to_html_a(self):
         html = self.node.to_html()
-        print(html)
-        print(self.node.props_to_html())
         self.assertEqual(html, '<a href="http://example.com" target="_blank">Click here</a>')
 
     def test_leaf_to_html_p(self):
