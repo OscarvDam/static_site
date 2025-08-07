@@ -2,7 +2,7 @@ import unittest
 
 from htmlnode import LeafNode, ParentNode
 
-class TestHTMLNode(unittest.TestCase):
+class TestParentNode(unittest.TestCase):
     def setUp(self):
         self.node = ParentNode(
             tag="p",
