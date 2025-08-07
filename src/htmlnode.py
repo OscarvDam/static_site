@@ -19,3 +19,42 @@ class HTMLNode:
     def __repr__(self):
         return f"tag={self.tag}\nvalue={self.value}\nchildren={self.children}\nprops={self.props_to_html()}"
 
+class LeafNode(HTMLNode):
+    def __init__(self, tag, value, props=None):
+        super().__init__(tag=tag, value=value, children=[], props=props or {})
+
+    def to_html(self) -> str:
+        if self.value == None:
+            raise ValueError("Value of a leaf node can't be none")
+        if self.tag == None:
+            return self.value
+        props_html = self.props_to_html()
+        if props_html != None:
+            if self.value == "":
+                return f"<{self.tag} {props_html} />"
+            return f"<{self.tag} {props_html}>{self.value}</{self.tag}>"
+        if self.value == "":
+            return f"<{self.tag}>"
+        return f"<{self.tag}>{self.value}</{self.tag}>"
+
+    def props_to_html(self):
+        return super().props_to_html()
+
+class ParentNode(HTMLNode):
+    def __init__(self, tag, children, props=None):
+        super().__init__(tag=tag, value=None, children=children, props=props)
+        
+    def to_html(self):
+        if not isinstance(self.tag, str) or not self.tag.strip():
+            raise ValueError("Tag must be a non-empty string")
+
+        if not isinstance(self.children, list) or not self.children:
+            raise ValueError("Children must be a non-empty list")
+
+        child_html = ""
+        for child in self.children:
+            if not hasattr(child, "to_html") or not callable(child.to_html):
+                raise TypeError(f"Child {child!r} does not implement a to_html() method")
+            child_html += child.to_html()
+
+        return f"<{self.tag}>{child_html}</{self.tag}>"
