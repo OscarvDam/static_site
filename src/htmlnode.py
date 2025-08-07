@@ -12,8 +12,7 @@ class HTMLNode:
         if self.props=={}:
             return
         prop_text = ""
-        sorted_props = sorted(self.props.keys())
-        for prop in sorted_props:
+        for prop in self.props:
             prop_text += f'{prop}="{self.props[prop]}" '
         return prop_text[:-1]
 

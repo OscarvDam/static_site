@@ -12,7 +12,7 @@ class LeafNode(HTMLNode):
         props_html = self.props_to_html()
         if props_html != None:
             if self.value == "":
-                return f"<{self.tag} {props_html}>"
+                return f"<{self.tag} {props_html} />"
             return f"<{self.tag} {props_html}>{self.value}</{self.tag}>"
         if self.value == "":
             return f"<{self.tag}>"

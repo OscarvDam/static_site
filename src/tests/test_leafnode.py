@@ -31,3 +31,9 @@ class TestLeafNode(unittest.TestCase):
         node = LeafNode(tag=None, value="Hello, world!")
         self.assertEqual(node.to_html(), "Hello, world!")
 
+    def test_leaf_img(self):
+        node = LeafNode(tag="img", value="", props={"src": "url/of/image.jpg", "alt": "This is an image"})
+        self.assertEqual(node.to_html(), '<img src="url/of/image.jpg" alt="This is an image" />')
+
+if __name__ == "__main__":
+    unittest.main()
