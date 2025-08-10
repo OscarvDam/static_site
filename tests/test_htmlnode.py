@@ -2,20 +2,23 @@ import unittest
 
 from src.htmlnode import HTMLNode
 
+
 class TestHTMLNode(unittest.TestCase):
     def setUp(self):
         self.node = HTMLNode(
             tag="a",
             value="Click here",
             children=[],
-            props={"href": "http://example.com", "target": "_blank"}
+            props={"href": "http://example.com", "target": "_blank"},
         )
 
     def test_init(self):
         self.assertEqual(self.node.tag, "a")
         self.assertEqual(self.node.value, "Click here")
         self.assertEqual(self.node.children, [])
-        self.assertEqual(self.node.props, {"href": "http://example.com", "target": "_blank"})
+        self.assertEqual(
+            self.node.props, {"href": "http://example.com", "target": "_blank"}
+        )
 
     def test_props_to_html(self):
         expected = 'href="http://example.com" target="_blank"'

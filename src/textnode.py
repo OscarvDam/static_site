@@ -1,6 +1,7 @@
 from enum import Enum
 from src.htmlnode import LeafNode
 
+
 class TextType(Enum):
     PLAIN = "text"
     BOLD = "bold"
@@ -8,12 +9,15 @@ class TextType(Enum):
     CODE = "code"
     LINK = "link"
     IMAGE = "image"
-    UNKNOWN = "unknown" # For testing
+    UNKNOWN = "unknown"  # For testing
+
 
 class TextNode:
     def __init__(self, text, text_type, url=None):
         if not isinstance(text_type, TextType):
-            raise ValueError(f"text_type must be an instance of TextType Enum, got {text_type!r}")
+            raise ValueError(
+                f"text_type must be an instance of TextType Enum, got {text_type!r}"
+            )
 
         self.text = text
         self.text_type = text_type
@@ -21,14 +25,15 @@ class TextNode:
 
     def __eq__(self, other):
         return (
-                isinstance(other, TextNode) and 
-                self.text == other.text and
-                self.text_type == other.text_type and
-                self.url == other.url
-            )
+            isinstance(other, TextNode)
+            and self.text == other.text
+            and self.text_type == other.text_type
+            and self.url == other.url
+        )
 
     def __repr__(self):
         return f"TextNode({self.text!r}, {self.text_type.value}, {self.url!r})"
+
 
 def text_node_to_html_node(text_node):
     match text_node.text_type:

@@ -8,12 +8,14 @@ class TestLeafNode(unittest.TestCase):
         self.node = LeafNode(
             tag="a",
             value="Click here",
-            props={"href": "http://example.com", "target": "_blank"}
+            props={"href": "http://example.com", "target": "_blank"},
         )
 
     def test_leaf_to_html_a(self):
         html = self.node.to_html()
-        self.assertEqual(html, '<a href="http://example.com" target="_blank">Click here</a>')
+        self.assertEqual(
+            html, '<a href="http://example.com" target="_blank">Click here</a>'
+        )
 
     def test_leaf_to_html_p(self):
         node = LeafNode("p", "Hello, world!")
@@ -32,8 +34,15 @@ class TestLeafNode(unittest.TestCase):
         self.assertEqual(node.to_html(), "Hello, world!")
 
     def test_leaf_img(self):
-        node = LeafNode(tag="img", value="", props={"src": "url/of/image.jpg", "alt": "This is an image"})
-        self.assertEqual(node.to_html(), '<img src="url/of/image.jpg" alt="This is an image" />')
+        node = LeafNode(
+            tag="img",
+            value="",
+            props={"src": "url/of/image.jpg", "alt": "This is an image"},
+        )
+        self.assertEqual(
+            node.to_html(), '<img src="url/of/image.jpg" alt="This is an image" />'
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

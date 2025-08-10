@@ -20,10 +20,13 @@ class TestTextNode(unittest.TestCase):
         self.assertNotEqual(node, node2)
 
     def test_not_eq_url(self):
-        node = TextNode("This is not same url node", TextType.LINK, "https://www.boot.dev/")
-        node2 = TextNode("This is not same url node", TextType.LINK, "http://www.boot.dev/")
+        node = TextNode(
+            "This is not same url node", TextType.LINK, "https://www.boot.dev/"
+        )
+        node2 = TextNode(
+            "This is not same url node", TextType.LINK, "http://www.boot.dev/"
+        )
         self.assertNotEqual(node, node2)
-
 
     def test_not_eq_type(self):
         node = TextNode("This is not same type node", TextType.PLAIN)

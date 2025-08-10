@@ -40,7 +40,9 @@ class TestTextNodeHTMLNode(unittest.TestCase):
         html_node = text_node_to_html_node(node)
         self.assertEqual(html_node.tag, "img")
         self.assertEqual(html_node.value, "")
-        self.assertEqual(html_node.props, {"src": "url/of/image.jpg", "alt": "This is a img node"})
+        self.assertEqual(
+            html_node.props, {"src": "url/of/image.jpg", "alt": "This is a img node"}
+        )
 
     def test_wrong_texttype(self):
         bad_node = object.__new__(TextNode)
@@ -50,6 +52,6 @@ class TestTextNodeHTMLNode(unittest.TestCase):
         with self.assertRaises(NotImplementedError) as cm:
             text_node_to_html_node(bad_node)
 
+
 if __name__ == "__main__":
     unittest.main()
-
